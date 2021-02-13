@@ -3,19 +3,21 @@
 function userlogin($Email,$Password,$con){
     $query = "SELECT * FROM user WHERE email='$Email' AND password='$Password'";
     $result = mysqli_query($con,$query);
-    $array_data = array();
+    $array_data = null;
     while($baris = mysqli_fetch_assoc($result)){
       $array_data[]=$baris;
     }
     if (is_null($array_data)) {
         $status = false;
-        $response = ['status' => $status, 'user' => $array_data];
-        echo json_encode($response);
+        // $response = ['status' => $status, 'user' => $array_data];
+        // echo json_encode($response);
     } else {
         $status = true;
-        $response = ['status' => $status, 'user' => $array_data];
-        echo json_encode($response);
+       
     }
+    header('Content-Type: application/json');
+    $response = ['status' => $status, 'user' => $array_data];
+    echo json_encode($response);
 }
 function userregister($nama,$email,$password,$con){
     class usr{}

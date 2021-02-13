@@ -4,7 +4,7 @@ function getPenyakit($con){
     $result = mysqli_query($con,$query);
     $array_data = array();
     while($baris = mysqli_fetch_assoc($result)){
-      $array_data[]=$baris;
+      $array_data[]=null;
     }
     if (is_null($array_data)) {
         $status = false;
